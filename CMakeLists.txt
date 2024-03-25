@@ -4,6 +4,8 @@ project(lili)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
+include_directories(./src/)
 
 add_executable(lili
-        main.cpp)
+        main.cpp
+        src/grammar_analysis/grammar_analysis.h)
