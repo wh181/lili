@@ -1,0 +1,3 @@
+/Users/wanghang/cpp-project/lili/cmake-build-debug/CMakeFiles/lili.dir
+/Users/wanghang/cpp-project/lili/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/wanghang/cpp-project/lili/cmake-build-debug/CMakeFiles/rebuild_cache.dir
