@@ -2,32 +2,39 @@
 #ifndef LILI_GRAMMAR_ANALYSIS_H
 #define LILI_GRAMMAR_ANALYSIS_H
 #include <vector>
+
+#ifndef LILI_LEXICAL_ANALYSIS_H
 #include "lexical_analysis/lexical_analysis.h"
+#endif
 
-
-struct Grade{
-    char my_operator;
-    unsigned char grade;
-};
-
-Grade operator_grade_table[] = {
-        Grade{.my_operator='<',.grade = 10},
-        Grade{.my_operator='+',.grade = 20},
-        Grade{.my_operator='-',.grade = 20},
-        Grade{.my_operator='*',.grade = 40},
-        Grade{.my_operator='/',.grade = 40},
-};
-
-
+#include "grammar_analysis/expression/expression.h"
+#include "grammar_analysis/expression/error/err.h"
+typedef ExprAST* AST;
 
 class grammar_analysis {
 public:
     std::vector<Token> tokens;
-    grammar_analysis(std::vector<Token> &tokens) :tokens(){}
+    std::vector<Token>::iterator index;
+    Token current_token;
+    Token preview_token;
+    Token outlook_token;
 
+    explicit grammar_analysis(std::vector<Token> &tokens) :tokens(tokens){
+        index = tokens.begin();
+    }
 
+    AST analysis();
+
+    static AST ParsePrimary(grammar_analysis* grammar);
+
+    bool getNextToken();
+
+    void HandleDefinition();
+
+    void HandleExtern();
+
+    void HandleTopLevelExpression();
 };
-
 
 
 

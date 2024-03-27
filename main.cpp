@@ -1,6 +1,10 @@
 #include <iostream>
+#ifndef LILI_LEXICAL_ANALYSIS_H
 #include "lexical_analysis/lexical_analysis.h"
-
+#endif
+#ifndef LILI_GRAMMAR_ANALYSIS_H
+#include "grammar_analysis/grammar_analysis.h"
+#endif
 using namespace std;
 
 
@@ -12,18 +16,12 @@ int length(T& arr)
 
 
 int main(int argc, char **argv){
-    //词法分析
     lexical_analysis token(argv[argc - 1]);
     auto tokens = token.analysis();
 
-    for (auto iter = tokens.begin(); iter != tokens.end(); iter++)
-    {
-        if (!iter->identifier_str.empty())
-            cout << iter->identifier_str << "-----" << iter->type << endl;
+    grammar_analysis grammar(tokens);
+    grammar.analysis();
 
-        if (iter->num_val > 0)
-            cout << iter->num_val << "-----" << iter->type << endl;
-    }
 
     cout << "success" << endl;
 }
